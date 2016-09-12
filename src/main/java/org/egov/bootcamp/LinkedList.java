@@ -4,11 +4,21 @@ import org.egov.bootcamp.model.Node;
 
 public class LinkedList<T> {
     private Node<T> head;
+    private Node<T> tail;
 
     public void add(T element) {
+        if(element==null)
+            throw new NullPointerException();
         Node<T> newNode = new Node<>(element);
-        newNode.setNext(head);
-        head = newNode;
+      if(tail==null)
+        tail=newNode;
+      if(head==null)  
+          head=newNode;
+      else
+      {
+        tail.setNext(newNode);
+        tail=newNode;
+      }
     }
 
     public boolean prune(Node<T> n, Node<T> lP) {
